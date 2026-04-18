@@ -12,11 +12,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Define the generation configuration
 const generationConfig = {
-  // The model will stop generating content
-  // after it reaches a stop sequence
-  stopSequences: ["red"],
   // the maximum number of tokens that can be generated in the response
-  maxOutputTokens: 200,
+  maxOutputTokens: 1024,
   // The temperature controls the degree of randomness in token selection
   // Lower temperatures are good for prompts that require a more deterministic
   // or less open-ended response
@@ -36,7 +33,7 @@ async function run() {
     generationConfig,
   });
   // Define the prompt
-  const prompt = "What is Generative AI?";
+  const prompt = "Provide a half page summary of Microsoft's sustainability initiatives from: https://www.microsoft.com/en-us/corporate-responsibility/sustainability ";
   // Generate content
   const result = await model.generateContent(prompt);
   // Get the response
