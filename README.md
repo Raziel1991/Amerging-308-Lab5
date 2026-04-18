@@ -6,6 +6,10 @@ It includes:
 - A web UI for side-by-side comparison
 - A CLI example for direct Gemini usage
 
+## Screenshot
+
+![Main Screen](Images/MainScreen.png)
+
 ## Project Structure
 
 - `server.js`: Express server and API routes
