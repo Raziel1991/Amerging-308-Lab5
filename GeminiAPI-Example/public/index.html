@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Summarizer Compare: Gemini vs ChatGPT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">COMP308 Lab 5</p>
+        <h1>Gemini vs ChatGPT Summarizer</h1>
+        <p class="subtitle">
+          Enter one prompt once, then compare outputs side by side.
+        </p>
+      </header>
+
+      <section class="prompt-card">
+        <label for="promptInput">Prompt</label>
+        <textarea id="promptInput" rows="6" placeholder="Example: Provide a one-page summary of Microsoft's sustainability initiatives from: https://www.microsoft.com/en-us/corporate-responsibility/sustainability"></textarea>
+        <div class="actions">
+          <button id="compareBtn" type="button">Compare Responses</button>
+          <span id="statusText" aria-live="polite"></span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel gemini">
+          <h2>Gemini</h2>
+          <pre id="geminiOutput">Gemini response will appear here.</pre>
+        </article>
+
+        <article class="panel chatgpt">
+          <h2>ChatGPT</h2>
+          <pre id="chatgptOutput">ChatGPT response will appear here.</pre>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
