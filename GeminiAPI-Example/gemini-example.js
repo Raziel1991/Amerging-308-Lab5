@@ -1,8 +1,13 @@
 require('dotenv').config();
-//
+
+const myModel = "gemini-2.5-flash-lite";
 // Import the GoogleGenerativeAI class
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 // Access your API key as an environment variable (see "Set up your API key" above)
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error("Missing GEMINI_API_KEY in .env");
+}
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Define the generation configuration
@@ -23,14 +28,15 @@ const generationConfig = {
   // their probabilities equals the topP value
   topK: 16,
 };
-// Create a generative model
-const model = genAI.getGenerativeModel({ model: "MODEL_NAME",  generationConfig });
-//
+
 async function run() {
-  // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+  // Use a currently available model for text-only prompts.
+  const model = genAI.getGenerativeModel({
+    model: myModel,
+    generationConfig,
+  });
   // Define the prompt
-  const prompt = "What is Generative AI"
+  const prompt = "What is Generative AI?";
   // Generate content
   const result = await model.generateContent(prompt);
   // Get the response
@@ -39,5 +45,9 @@ async function run() {
   const text = response.text();
   console.log(text);
 }
+
 // Run the function
-run();
+run().catch((err) => {
+  console.error("Gemini request failed:", err.message || err);
+  process.exitCode = 1;
+});
